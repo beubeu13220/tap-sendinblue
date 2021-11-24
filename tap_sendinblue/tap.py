@@ -5,42 +5,34 @@ from typing import List
 from singer_sdk import Tap, Stream
 from singer_sdk import typing as th  # JSON schema typing helpers
 
-# TODO: Import your custom stream types here:
+
 from tap_sendinblue.streams import (
     SendinblueStream,
     ListsStream,
     CampaignsStream,
-    ListMembersStream
-
+    ListMembersStream,
 )
-# TODO: Compile a list of custom stream types here
-#       OR rewrite discover_streams() below with your custom logic.
-STREAM_TYPES = [
-    ListsStream,
-    CampaignsStream,
-    ListMembersStream
 
-]
+
+STREAM_TYPES = [ListsStream, CampaignsStream, ListMembersStream]
 
 
 class TapSendinblue(Tap):
     """Sendinblue tap class."""
-    name = "tap-sendinblue"
 
-    # TODO: Update this section with the actual config values you expect:
+    name = "tap-sendinblue"
     config_jsonschema = th.PropertiesList(
         th.Property(
             "api_key",
             th.StringType,
             required=True,
-            description="The token to authenticate against the API service"
+            description="The token to authenticate against the API service",
         ),
-            th.Property(
+        th.Property(
             "start_date",
             th.DateTimeType,
-            description="The earliest record date to sync"
+            description="The earliest record date to sync",
         ),
-        
     ).to_dict()
 
     def discover_streams(self) -> List[Stream]:
