@@ -43,6 +43,10 @@ class CampaignsStream(SendinblueStream):
     schema = th.PropertiesList(
         th.Property("id", th.IntegerType),
         th.Property("name", th.StringType),
+        th.Property("scheduledAt", th.StringType),
+        th.Property("createdAt", th.StringType),
+        th.Property("modifiedAt", th.StringType),
+        th.Property("statistics", th.ObjectType()),
     ).to_dict()
 
 
